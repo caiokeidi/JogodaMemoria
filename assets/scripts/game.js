@@ -55,12 +55,8 @@ let game = {
     checkMatch: function(){
         if(this.firstCard.icon === this.secondCard.icon){
             return true;
-        }else{
-            //Coloquei para remover o flipped aqui
-            this.unflipCards();
-            return false;
-
         }
+        
         
         
     },
@@ -74,6 +70,13 @@ let game = {
     unflipCards: function(){
         this.firstCard.flipped = false;
         this.secondCard.flipped = false;
+        this.clearCards();
+    },
+
+    checkGameOver: function(){
+        //retorna se temos cartas que não estão flipados
+        //se a array tiver um length de zero, não temos mais cartas de não flipadas.
+        return this.cards.filter(card => !card.flipped).length == 0
     },
 
     createCardsFromTechs: function (){
