@@ -1,0 +1,89 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Righteous', sans-serif;
+    display: flex; /*para centralizar tudo*/
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /*Pega 100% da altura da tela */
+    background-color: #c7cdd3;
+}
+
+.card{
+    width: 150px;
+    height: 150px;
+    position: relative;
+
+    transform-style: preserve-3d; /*cria como um elemento 3D, aí se ele estiver virado ,ele deixa o back invisível com 
+    a ajuda do backface-visibility: hidden; nos filhos. */
+    transition: transform .5s;
+}
+
+.card_back, .card_front{
+    width: 100%;
+    height: 100%; /*tem 100% do tamanho do pai*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    position: absolute;
+
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.45);
+    backface-visibility: hidden; /*Faz com que todas as partes que estiverem invertidas fiquem invisíveis, 
+    como o rotateY(180deg) Para isso precisamos colocar o preserve-3D no card.*/
+}
+
+.card_front{
+    transform: rotateY(180deg);
+    background-color: #101c2c;
+    
+
+}
+
+.card_back{
+    color: #101c2c;
+    background-color: #05c3ff;
+    font-size: 30px;
+}
+
+.flip{
+    transform: rotateY(180deg);
+}
+
+#gameOver{
+    width: 100%;
+    height: 100%;
+    position: absolute; /*Para que fique acima dos outros elementos*/
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    font-size: 40px;
+
+    display: none; /*Vamos mudar para flex quando quiser que apareça */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    top: 0; /*Para que ele sempre se sobressaia, mesmo com outros elementos absolute na tela (como as cartas) */
+}
+
+#restart{
+    padding: 20px;
+    font-size: 20px;
+    background-color: yellow;
+    border: none; 
+    border-radius: 10px;   
+    margin-top: 10px;
+}
+
+#gameBoard{
+    max-width: 900px;
+    display: grid;
+    grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr 1fr; /*Para se ter 4 linhas e 5 colunas */
+    gap: 20px;
+
+}
